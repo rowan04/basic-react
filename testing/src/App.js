@@ -27,6 +27,12 @@ export default function MyApp() {
     </li>
   );
 
+  const [sameCount, setCount] = useState(0);
+
+  function sameHandleClick() {
+    setCount(sameCount + 1);
+  }
+
   return (
     <div>
       <h1>Welcome to my app</h1>
@@ -46,6 +52,11 @@ export default function MyApp() {
       />
       <br />
       <ul>{listItems}</ul>
+      <br />
+      <h3>Counters that update together:</h3>
+      <SameButton sameCount={sameCount} sameOnClick={sameHandleClick} />
+      <br />
+      <SameButton sameCount={sameCount} sameOnClick={sameHandleClick} />
     </div>
   );
 }
@@ -61,6 +72,14 @@ function MyButton() {
   return (
     <button onClick={handleClick}>
       Clicked {count} times
+    </button>
+  );
+}
+
+function SameButton({sameCount, sameOnClick}) {
+  return (
+    <button onClick={sameOnClick}>
+      Clicked {sameCount} times
     </button>
   );
 }
